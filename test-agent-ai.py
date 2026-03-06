@@ -21,33 +21,35 @@ URLS = [
 ]
 # ================================================================
 
-genai.configure(api_key="AIzaSyDv5Mwj8rxqDSsQbGmy0SRrapB-Ir-JJJo")
-model = genai.GenerativeModel('gemini-1.5-flash')
+# New 2026 Client Setup
+client = genai.Client(api_key="AIzaSyDv5Mwj8rxqDSsQbGmy0SRrapB-Ir-JJJo")
 
 def get_price_via_vision(page, url):
     print(f"Navigating to {url}...")
-    
-    # VISION-FIRST NAVIGATION:
-    # We don't wait for 'networkidle' or 'load' because we don't care about background code.
-    # We only wait for the navigation to 'commit' (start), then we use a hard timer.
     try:
         page.goto(url, wait_until="commit", timeout=10000)
     except Exception as e:
-        print(f"Navigation note: {e} (Continuing to screenshot anyway...)")
+        print(f"Navigation note: {e} (Continuing...)")
 
-    print("Waiting 7 seconds for the page to visually settle for the camera...")
+    print("Waiting 7 seconds for the page to visually settle...")
     time.sleep(7) 
     
     screenshot_path = "temp_price_shot.png"
-    # Capture only the visible area (what a human sees)
     page.screenshot(path=screenshot_path, full_page=False)
     
-    # Send to Gemini Vision
-    print("Uploading screenshot to Gemini...")
-    img = genai.upload_file(path=screenshot_path)
-    prompt = "Look at this Old Navy product page. What is the current price and is size 34W x 34L in stock? Return only: Price: [value], Stock: [In Stock/Out of Stock]"
-    
-    response = model.generate_content([img, prompt])
+    # New Vision Logic for 2026
+    print("Analyzing with Gemini 2.0 Flash...")
+    with open(screenshot_path, "rb") as f:
+        image_data = f.read()
+
+    # Using 'gemini-2.0-flash' which is the standard for 2026
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=[
+            "Look at this Old Navy product page. What is the current price and is size 34W x 34L in stock? Return only: Price: [value], Stock: [In Stock/Out of Stock]",
+            {"inline_data": {"data": image_data, "mime_type": "image/png"}}
+        ]
+    )
     return response.text
 
 def send_email(report_body):
