@@ -21,7 +21,7 @@ URLS = [
 ]
 # ================================================================
 
-genai.configure(api_key=AIzaSyDv5Mwj8rxqDSsQbGmy0SRrapB-Ir-JJJo)
+genai.configure(api_key="AIzaSyDv5Mwj8rxqDSsQbGmy0SRrapB-Ir-JJJo")
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 def get_price_via_vision(page, url):
