@@ -6,10 +6,10 @@ from playwright.sync_api import sync_playwright
 from google import genai  # The modern 2026 library
 
 # ================= CONFIGURATION (FILL THESE IN) =================
-GEMINI_API_KEY = "AIzaSyDv5Mwj8rxqDSsQbGmy0SRrapB-Ir-JJJo" 
+GEMINI_API_KEY = "YOUR_GEMINI_API_KEY_HERE" 
 SENDER_EMAIL = "fidoalert@gmail.com"
-EMAIL_APP_PASSWORD = "wtguczzgiwrajxqb" 
-RECIPIENT_EMAIL = "blackdogretro@gmail.com"
+EMAIL_APP_PASSWORD = "your-16-digit-app-password" 
+RECIPIENT_EMAIL = "your-email@gmail.com"
 
 # Using your Gateway path - Ensure 'User' is correct
 USER_DATA_DIR = r"C:\Users\User\AppData\Local\Google\Chrome\User Data"
@@ -37,32 +37,20 @@ def get_price_via_vision(page, url):
     
     screenshot_path = "temp_price_shot.png"
     page.screenshot(path=screenshot_path, full_page=False)
+    
     print("Analyzing with Gemini 2.0 Flash...")
     with open(screenshot_path, "rb") as f:
         image_bytes = f.read()
 
     # The 2026-stable call structure
-    max_retries = 3
-    for attempt in range(max_retries):
-        try:
-            response = client.models.generate_content(
-                model="gemini-2.0-flash",
-                contents=[
-                    "Look at this Old Navy product page. What is the current price? Is it available for shipping? Is it available for in-store pickup? Return only: Price: [value], Shipping: [Available/Unavailable], Pickup: [Available/Unavailable]",
-                    {"inline_data": {"data": image_bytes, "mime_type": "image/png"}}
-                ]
-            )
-            return response.text
-        except Exception as e:
-            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
-                if attempt < max_retries - 1:
-                    wait_time = (attempt + 1) * 15
-                    print(f"Rate limited (429). Retrying in {wait_time} seconds...")
-                    time.sleep(wait_time)
-                else:
-                    return f"Error: Request failed after {max_retries} retries due to rate limiting."
-            else:
-                return f"Error: {e}"
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=[
+            "Look at this Old Navy product page. What is the current price and is size 34W x 34L in stock? Return only: Price: [value], Stock: [In Stock/Out of Stock]",
+            {"inline_data": {"data": image_bytes, "mime_type": "image/png"}}
+        ]
+    )
+    return response.text
 
 def send_email(report_body):
     msg = EmailMessage()
@@ -86,7 +74,8 @@ def main():
         print(f"Launching Chrome profile: {PROFILE_NAME}...")
         context = p.chromium.launch_persistent_context(
             USER_DATA_DIR,
-            headless=False,  # Debug by setting to False
+            headless=True,
+            channel="chrome",
             args=[f"--profile-directory={PROFILE_NAME}"]
         )
         page = context.new_page()
