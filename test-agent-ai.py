@@ -15,10 +15,10 @@ RECIPIENT_EMAIL = "blackdogretro@gmail.com"
 USER_DATA_DIR = r"C:\Users\User\AppData\Local\Google\Chrome\User Data"
 PROFILE_NAME = "Default" 
 
-URLS = [
-    "https://oldnavy.gap.com/browse/product.do?pid=5844620023434&vid=1#pdp-page-content",
-    "https://oldnavy.gap.com/browse/product.do?pid=5844470023434&vid=1#pdp-page-content"
-]
+URLS = {
+    "https://oldnavy.gap.com/browse/product.do?pid=5844620023434&vid=1#pdp-page-content": "Structured Straight Non-Stretch Jeans, Dark Wash, 34x34",
+    "https://oldnavy.gap.com/browse/product.do?pid=5844470023434&vid=1#pdp-page-content": "Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34"
+}
 # ================================================================
 
 # Initialize the 2026 GenAI Client
@@ -37,7 +37,7 @@ def get_price_via_vision(page, url):
     
     screenshot_path = "temp_price_shot.png"
     page.screenshot(path=screenshot_path, full_page=False)
-    print("Analyzing with Gemini 2.0 Flash...")
+    print("Analyzing with Gemini 2.5 Flash...")
     with open(screenshot_path, "rb") as f:
         image_bytes = f.read()
 
@@ -46,7 +46,7 @@ def get_price_via_vision(page, url):
     for attempt in range(max_retries):
         try:
             response = client.models.generate_content(
-                model="gemini-2.0-flash",
+                model="gemini-2.5-flash",
                 contents=[
                     "Look at this Old Navy product page. What is the current price? Is it available for shipping? Is it available for in-store pickup? Return only: Price: [value], Shipping: [Available/Unavailable], Pickup: [Available/Unavailable]",
                     {"inline_data": {"data": image_bytes, "mime_type": "image/png"}}
@@ -91,11 +91,11 @@ def main():
         )
         page = context.new_page()
 
-        for url in URLS:
+        for url, title in URLS.items():
             result = get_price_via_vision(page, url)
-            full_report += f"\nURL: {url}\n{result}\n"
+            full_report += f"\nItem: {title}\nURL: {url}\n{result}\n"
             full_report += "-"*30
-            print(f"Result: {result}")
+            print(f"Result for {title}: {result}")
             
         context.close()
 
