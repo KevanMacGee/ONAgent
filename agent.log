@@ -1,0 +1,27 @@
+2026-03-08 21:43:01,400 - INFO - Launching Chrome profile: Default...
+2026-03-08 21:43:02,310 - INFO - Navigating to https://oldnavy.gap.com/browse/product.do?pid=5844620023434&vid=1#pdp-page-content...
+2026-03-08 21:43:03,603 - INFO - Waiting 7 seconds for visual settle...
+2026-03-08 21:43:10,993 - INFO - Analyzing with Gemini 2.5 Flash...
+2026-03-08 21:43:10,999 - INFO - AFC is enabled with max remote calls: 10.
+2026-03-08 21:43:16,656 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-03-08 21:43:16,675 - INFO - Result for Structured Straight Non-Stretch Jeans, Dark Wash, 34x34: Price: $27.99, Shipping: Available, Pickup: Unavailable
+2026-03-08 21:43:16,675 - INFO - Navigating to https://oldnavy.gap.com/browse/product.do?pid=5844470023434&vid=1#pdp-page-content...
+2026-03-08 21:43:17,600 - INFO - Waiting 7 seconds for visual settle...
+2026-03-08 21:43:25,072 - INFO - Analyzing with Gemini 2.5 Flash...
+2026-03-08 21:43:25,078 - INFO - AFC is enabled with max remote calls: 10.
+2026-03-08 21:43:28,048 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-03-08 21:43:28,049 - INFO - Result for Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34: Price: $27.99, Shipping: Available, Pickup: Unavailable
+2026-03-08 21:43:28,538 - INFO - 
+Final Report:
+Old Navy Price Check Report
+==============================
+
+Item: Structured Straight Non-Stretch Jeans, Dark Wash, 34x34
+URL: https://oldnavy.gap.com/browse/product.do?pid=5844620023434&vid=1#pdp-page-content
+Price: $27.99, Shipping: Available, Pickup: Unavailable
+------------------------------
+Item: Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34
+URL: https://oldnavy.gap.com/browse/product.do?pid=5844470023434&vid=1#pdp-page-content
+Price: $27.99, Shipping: Available, Pickup: Unavailable
+------------------------------
+2026-03-08 21:43:30,619 - INFO - Email sent successfully.
