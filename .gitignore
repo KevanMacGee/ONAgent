@@ -1,3 +1,5 @@
 .specstory/
 on_profile/
 ignore/
+.env
+__pycache__/

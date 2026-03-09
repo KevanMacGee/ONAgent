@@ -5,6 +5,10 @@ import logging
 from email.message import EmailMessage
 from playwright.sync_api import sync_playwright
 from google import genai  # The modern 2026 library
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Configure logging to write to 'agent.log' and standard output
 logging.basicConfig(
@@ -16,15 +20,14 @@ logging.basicConfig(
     ]
 )
 
-# ================= CONFIGURATION (FILL THESE IN) =================
-GEMINI_API_KEY = "AIzaSyDv5Mwj8rxqDSsQbGmy0SRrapB-Ir-JJJo" 
-SENDER_EMAIL = "fidoalert@gmail.com"
-EMAIL_APP_PASSWORD = "wtguczzgiwrajxqb" 
-RECIPIENT_EMAIL = "blackdogretro@gmail.com"
+# ================= CONFIGURATION =================
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+SENDER_EMAIL = os.getenv("SENDER_EMAIL")
+EMAIL_APP_PASSWORD = os.getenv("EMAIL_APP_PASSWORD")
+RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL")
 
-# Using your Gateway path - Ensure 'User' is correct
-USER_DATA_DIR = r"C:\Users\User\AppData\Local\Google\Chrome\User Data"
-PROFILE_NAME = "Default" 
+USER_DATA_DIR = os.getenv("CHROME_USER_DATA_DIR")
+PROFILE_NAME = os.getenv("CHROME_PROFILE_NAME")
 
 URLS = {
     "https://oldnavy.gap.com/browse/product.do?pid=5844620023434&vid=1#pdp-page-content": "Structured Straight Non-Stretch Jeans, Dark Wash, 34x34",
