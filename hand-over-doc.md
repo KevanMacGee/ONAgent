@@ -1,3 +1,5 @@
+*** Why this document exists. I started developing this project using Gemini in the web inteface chat. It was going way off base and getting erratic with responses. I asked it to write a technical spec or PRD-ish sort of codument to give to Antigravity IDE to pick up where it left off. This doc is probably less relevant now since pretty much everything has been fixed or added using Antigravity. Plus, a few things have changed, like we move to using an env file and the model we are using is Gemini2.5 Flash.
+
 # Technical Project Specification: Denim Vision Agent (2026)
 
 This comprehensive document serves as the "Source of Truth" for the **Denim Vision Agent** project. It is designed to bring a new developer or AI (like Antigravity IDE) from zero to full proficiency regarding the project's history, architecture, and current status.
@@ -31,13 +33,13 @@ The objective is to create a lightweight, resilient automation agent that monito
 
 To avoid repeating past mistakes, the following approaches have been tested and strictly ruled out:
 
-| **Approach**                    | **Why it Failed**                                            |
-| ------------------------------- | ------------------------------------------------------------ |
-| **Traditional HTML Scraping**   | Old Navy uses Akamai bot-protection and dynamic CSS classes. The selectors change frequently, breaking the code. |
-| **JSON/Data-Bootstrap Hunt**    | We attempted to find hidden JSON blobs (e.g., `__PRELOADED_STATE__`) to avoid opening a browser. The data was either obfuscated, incomplete, or blocked by security headers. |
-| **`networkidle` Wait Trigger**  | Playwright’s standard `networkidle` wait timed out (30s+) because Old Navy’s site runs 100+ background trackers and ads that never stop "talking" to the network. |
-| **`load` Wait Trigger**         | Even after the "load" event, price and stock elements often took an additional 2–3 seconds to "paint" on the screen, leading to blank screenshots. |
-| **Standard/Incognito Browsing** | Defaulting to a clean browser state caused the site to lose the user's location, consistently reverting to the "Greece Ridge" store rather than the desired local store. |
+| **Approach**                    | **Why it Failed**                                                                                                                                                                |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Traditional HTML Scraping**   | Old Navy uses Akamai bot-protection and dynamic CSS classes. The selectors change frequently, breaking the code.                                                                 |
+| **JSON/Data-Bootstrap Hunt**    | We attempted to find hidden JSON blobs (e.g., `__PRELOADED_STATE__`) to avoid opening a browser. The data was either obfuscated, incomplete, or blocked by security headers.     |
+| **`networkidle` Wait Trigger**  | Playwright’s standard `networkidle` wait timed out (30s+) because Old Navy’s site runs 100+ background trackers and ads that never stop "talking" to the network.                |
+| **`load` Wait Trigger**         | Even after the "load" event, price and stock elements often took an additional 2–3 seconds to "paint" on the screen, leading to blank screenshots.                               |
+| **Standard/Incognito Browsing** | Defaulting to a clean browser state caused the site to lose the user's location, consistently reverting to the "Greece Ridge" store rather than the desired local store.         |
 | **Legacy Gemini SDKs**          | The `google-generativeai` library became unstable in early 2026. Using old model strings like `gemini-1.5-flash` often returned 404 "Not Found" errors in the newer environment. |
 
 ------
@@ -58,7 +60,7 @@ The screenshot is analyzed by the `google-genai` (v2026) SDK.
 - **Model:** `gemini-2.0-flash`.
 
 - **Prompting Strategy:** We use a strict extraction prompt to minimize AI "chatter":
-
+  
   > *"Look at this Old Navy product page. What is the current price? Is it available for shipping? Is it available for in-store pickup? Return only: Price: [value], Shipping: [Available/Unavailable], Pickup: [Available/Unavailable]"*
 
 ### C. Communication Layer: SMTP (Gmail)

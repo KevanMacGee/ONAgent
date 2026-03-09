@@ -66,7 +66,16 @@ def get_price_via_vision(page, url):
                     {"inline_data": {"data": image_bytes, "mime_type": "image/png"}}
                 ]
             )
-            return response.text
+            
+            # Extract tokens
+            in_tokens = response.usage_metadata.prompt_token_count if response.usage_metadata else 0
+            out_tokens = response.usage_metadata.candidates_token_count if response.usage_metadata else 0
+            
+            return {
+                "text": response.text,
+                "in_tokens": in_tokens,
+                "out_tokens": out_tokens
+            }
         except Exception as e:
             if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
                 if attempt < max_retries - 1:
@@ -74,9 +83,9 @@ def get_price_via_vision(page, url):
                     logging.warning(f"Rate limited (429). Retrying in {wait_time} seconds...")
                     time.sleep(wait_time)
                 else:
-                    return f"Error: Request failed after {max_retries} retries due to rate limiting."
+                    return {"text": f"Error: Request failed after {max_retries} retries due to rate limiting.", "in_tokens": 0, "out_tokens": 0}
             else:
-                return f"Error: {e}"
+                return {"text": f"Error: {e}", "in_tokens": 0, "out_tokens": 0}
 
 def send_email(report_body):
     msg = EmailMessage()
@@ -99,6 +108,8 @@ def main():
     logging.info(f"\n\n{'='*20} Start task on {current_time_str} {'='*20}")
 
     full_report = "Old Navy Price Check Report\n" + ("="*30) + "\n"
+    total_in_tokens = 0
+    total_out_tokens = 0
     
     with sync_playwright() as p:
         logging.info(f"Launching Chrome profile: {PROFILE_NAME}...")
@@ -110,12 +121,32 @@ def main():
         page = context.new_page()
 
         for url, title in URLS.items():
-            result = get_price_via_vision(page, url)
-            full_report += f"\nItem: {title}\nURL: {url}\n{result}\n"
+            result_data = get_price_via_vision(page, url)
+            result_text = result_data["text"]
+            
+            total_in_tokens += result_data["in_tokens"]
+            total_out_tokens += result_data["out_tokens"]
+            
+            full_report += f"\nItem: {title}\nURL: {url}\n{result_text}\n"
             full_report += "-"*30
-            logging.info(f"Result for {title}: {result}")
+            logging.info(f"Result for {title}: {result_text}")
             
         context.close()
+
+    # Calculate Cost for Gemini 2.5 Flash
+    # Input: $0.30 per 1M tokens
+    # Output: $2.50 per 1M tokens
+    input_cost = (total_in_tokens / 1_000_000) * 0.30
+    output_cost = (total_out_tokens / 1_000_000) * 2.50
+    total_cost = input_cost + output_cost
+
+    analytics_block = f"""
+\nSession Analytics:
+Total Input Tokens:  {total_in_tokens:,}
+Total Output Tokens: {total_out_tokens:,}
+Estimated Cost:      ${total_cost:.5f}
+"""
+    full_report += analytics_block
 
     logging.info(f"\nFinal Report:\n{full_report}")
     send_email(full_report)
