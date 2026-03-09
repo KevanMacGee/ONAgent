@@ -25,3 +25,33 @@ URL: https://oldnavy.gap.com/browse/product.do?pid=5844470023434&vid=1#pdp-page-
 Price: $27.99, Shipping: Available, Pickup: Unavailable
 ------------------------------
 2026-03-08 21:43:30,619 - INFO - Email sent successfully.
+2026-03-08 21:49:31,309 - INFO - 
+
+==================== Start task on 3/08/26, 9:49 PM ====================
+2026-03-08 21:49:31,731 - INFO - Launching Chrome profile: Default...
+2026-03-08 21:49:32,164 - INFO - Navigating to https://oldnavy.gap.com/browse/product.do?pid=5844620023434&vid=1#pdp-page-content...
+2026-03-08 21:49:32,925 - INFO - Waiting 7 seconds for visual settle...
+2026-03-08 21:49:40,431 - INFO - Analyzing with Gemini 2.5 Flash...
+2026-03-08 21:49:40,439 - INFO - AFC is enabled with max remote calls: 10.
+2026-03-08 21:49:43,761 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-03-08 21:49:43,762 - INFO - Result for Structured Straight Non-Stretch Jeans, Dark Wash, 34x34: Price: $27.99, Shipping: Available, Pickup: Unavailable
+2026-03-08 21:49:43,762 - INFO - Navigating to https://oldnavy.gap.com/browse/product.do?pid=5844470023434&vid=1#pdp-page-content...
+2026-03-08 21:49:45,135 - INFO - Waiting 7 seconds for visual settle...
+2026-03-08 21:49:52,514 - INFO - Analyzing with Gemini 2.5 Flash...
+2026-03-08 21:49:52,524 - INFO - AFC is enabled with max remote calls: 10.
+2026-03-08 21:49:55,846 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-03-08 21:49:55,847 - INFO - Result for Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34: Price: $27.79, Shipping: Available, Pickup: Unavailable
+2026-03-08 21:49:56,221 - INFO - 
+Final Report:
+Old Navy Price Check Report
+==============================
+
+Item: Structured Straight Non-Stretch Jeans, Dark Wash, 34x34
+URL: https://oldnavy.gap.com/browse/product.do?pid=5844620023434&vid=1#pdp-page-content
+Price: $27.99, Shipping: Available, Pickup: Unavailable
+------------------------------
+Item: Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34
+URL: https://oldnavy.gap.com/browse/product.do?pid=5844470023434&vid=1#pdp-page-content
+Price: $27.79, Shipping: Available, Pickup: Unavailable
+------------------------------
+2026-03-08 21:49:58,131 - INFO - Email sent successfully.

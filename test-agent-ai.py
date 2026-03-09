@@ -91,6 +91,10 @@ def send_email(report_body):
         logging.error(f"Failed to send email: {e}")
 
 def main():
+    # Insert a clear breaker line in the log file for visual separation of runs
+    current_time_str = time.strftime('%m/%d/%y, %I:%M %p').lstrip("0").replace(" 0", " ")
+    logging.info(f"\n\n{'='*20} Start task on {current_time_str} {'='*20}")
+
     full_report = "Old Navy Price Check Report\n" + ("="*30) + "\n"
     
     with sync_playwright() as p:
