@@ -18,10 +18,10 @@ Instead of relying on fragile HTML parsing that breaks whenever a website update
 ## Things to keep in mind
 
 - You need to be a tiny bit comfortable working in the terminal to get this set up.
-- It's Windows only at the moment but could be adapted to Mac pretty easily. Just give the `Readme.md`, `visual-product-agent.py` and `env.example` files to an AI model and tell it you need to make it work on a Mac instead of Windows.
-- You can also adapt it pretty easily to any other product or web site. Mostly the same drill as above, give it the specific product URLs and tell it it needs to update the URLs as well as the bit of code that is contained in `contents=[].`
-- HOWEVER, the above only works if each product you want status on has a unique URL. 
-- You cannot have the Chrome browser open when this is running. Playwright will install a test version of Chrome and use that to get the product status. 
+- It's Windows only at the moment but could be adapted to Mac pretty easily. Just give the `Readme.md`, `visual-product-agent.py` and `env.example` files to an AI model and tell it you need to make it work on a Mac instead of Windows and to include updating instructions in the readme.
+- You can also adapt it pretty easily to any other product or web site as I am pretty sure you aren't interested in the exact jeans I am. Mostly the same drill as above, give it the specific product URLs and tell it it needs to update the URLs as well as the bit of code that is contained in `contents=[].`
+- HOWEVER, using it on other websites only works if each product you want status on has a unique URL. 
+- You cannot have the Chrome browser open when this is running. Playwright will install a test version of Chrome and use that to get the product status. You might have to log into the account of the website you are going to, which should become obvious to you as you test it. Also, don't worry, it doesn't even have a trace of the tools needed to order items without your okay.
 - As the code exists now, you see the agent open a Chrome window and navigate to the page(s) you are interested in, then it closes it. I liked it for testing and just to watch it run. You can change that so it runs in the background (headless) by changing `headless=False` to `headless=True`.
 
 

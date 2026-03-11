@@ -127,7 +127,10 @@ def main():
             total_in_tokens += result_data["in_tokens"]
             total_out_tokens += result_data["out_tokens"]
             
-            full_report += f"\nItem: {title}\nURL: {url}\n{result_text}\n"
+            # Put Price, Shipping, and Pickup each on their own line
+            formatted_text = result_text.replace(", Shipping:", "\nShipping:").replace(", Pickup:", "\nPickup:")
+            
+            full_report += f"\nItem: {title}\nURL: {url}\n{formatted_text}\n"
             full_report += "-"*30
             logging.info(f"Result for {title}: {result_text}")
             
