@@ -81,7 +81,7 @@ The screenshot is analyzed by the `google-genai` (v2026) SDK.
 
 ------
 
-## 6. Current Script Logic (test-agent-ai.py)
+## 6. Current Script Logic (visual-product-agent.py)
 
 The script follows this linear execution:
 
