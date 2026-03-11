@@ -26,7 +26,7 @@ Instead of relying on fragile HTML parsing that breaks whenever a website update
 
 
 
-⚠️**The above was human written, the below was written by Gemini, but then I fact checked it and made a few minor corrections and readability edits. There is some duplicate info compared to the above text but it didn't seem to be that bad and I couldn't be bothered changing it.**😜
+⚠️ **The above was human written, the below was written by Gemini, but then I fact checked it and made a few minor corrections and readability edits. There is some duplicate info compared to the above text but it didn't seem to be that bad and I couldn't be bothered changing it.** 😜
 
 ## Prerequisites
 - Python 3.8+
