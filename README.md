@@ -1,7 +1,8 @@
 # Visual Web Scraper Agent (Playwright + Gemini AI)
 
 **Sometimes you write an agent to solve important business needs, sometimes you write an agent to buy cheap jeans to wear to the muddy dog park.** 
-Click [here](#prerequisites) if you want to skip the wordy bits and get right to the setup.
+
+Click [here](#setup-start) if you want to skip the wordy bits and get right to the setup.
 
 Old Navy jeans are normally about $40 - $50 a pair but they go on sale a few times a year for about $15 - 20. I'm rough on my jeans and do a lot of hiking with my dog and have to replace them from time to time. This tool tells me the price and availability of those jeans a few times a week so I can snap them up if I am in need. 
 
@@ -28,7 +29,7 @@ Instead of relying on fragile HTML parsing that breaks whenever a website update
 
 
 
-⚠️**The above was human written, the below was written by Gemini, then fact checked by a human and given a few minor readability edits. There is some duplicate info compared to the above text but it didn't seem to be that bad and I couldn't be bothered changing it.**😜
+###### ⚠️The above was human written, the below was written by Gemini, then fact checked by a human and given a few minor readability edits. There is some duplicate info compared to the above text but it didn't seem to be that bad and I couldn't be bothered changing it. {#setup-start}
 
 ## Prerequisites
 - Python 3.8+
