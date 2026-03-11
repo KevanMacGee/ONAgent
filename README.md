@@ -28,8 +28,10 @@ Instead of relying on fragile HTML parsing that breaks whenever a website update
 - As the code exists now, you can watch the agent open a Chrome window and navigate to the page(s) you are interested in, then it closes it. I liked it for testing and just to watch it run. You can change that so it runs in the background (headless) by changing `headless=False` to `headless=True`.
 
 
+<a id="setup-start"></a>
+------
 
-###### ⚠️The above was human written, the below was written by Gemini, then fact checked by a human and given a few minor readability edits. There is some duplicate info compared to the above text but it didn't seem to be that bad and I couldn't be bothered changing it. {#setup-start}
+##### ⚠️The above was human written. The below was written by Gemini then fact checked by a human and given a few minor readability edits. 
 
 ## Prerequisites
 - Python 3.8+
