@@ -1,24 +1,29 @@
 # Visual Web Scraper Agent (Playwright + Gemini AI)
 
-Sometimes you write an agent to solve important business needs, sometimes you write an agent to buy cheap jeans to wear to the muddy, messy dog park! 
+**Sometimes you write an agent to solve important business needs, sometimes you write an agent to buy cheap jeans to wear to the muddy, messy dog park!** 
 
-Old Navy jeans are normally about $40 - $50 a pair but they go on sale a few times a year for about $15 - 20. I'm rough on my jeans and do a lot of hiking with my dog and have to replace them This tool tells me the price and availability of those jeans a few times a week so I can snap them up if I am in need. 
+Old Navy jeans are normally about $40 - $50 a pair but they go on sale a few times a year for about $15 - 20. I'm rough on my jeans and do a lot of hiking with my dog and have to replace them from time to time. This tool tells me the price and availability of those jeans a few times a week so I can snap them up if I am in need. 
 
-This is a lightweight, automated agent that uses Python to navigates to (in my example) Old Navy pages for the jeans, takes a screenshot and send the screenshot to the Gemini API. Then Gemini 2.5 Flash multimodal AI looks at the image to find current price and whether they are in stock for both shipping and in store pick up options. It then emails me that info. 
-
-I added the API info at the bottom, so it tells me the number of tokens used and how much that specific request cost. It's early 2026 at the time of this writing and it has cost about $0.0003 each time it runs. Your milage will probably vary, but not by much.
+- This is a lightweight, automated agent that uses Python to navigates to (in my example) Old Navy pages for the jeans, and takes a screenshot of the page. 
+- It then sends the screenshot to the Gemini API. 
+- Gemini 2.5 Flash multimodal AI looks at the image to find current price and whether they are in stock for both shipping and in store pick up options. 
+- It then emails me that info.
+- I added the API info at the bottom, so it tells me the number of tokens used and how much that specific request cost. It's early 2026 at the time of this writing and it has cost about $0.0003 each time it runs. Your milage will probably vary, but not by much.
 
 
 
 ## Why this approach?
-Instead of relying on fragile HTML parsing that breaks whenever a website updates its design, this script uses **Playwright** to open a real browser window and **Gemini Vision** to "look" at a screenshot of the page. It's resilient, easy to adapt to any website, and incredibly cheap to run.
+Instead of relying on fragile HTML parsing that breaks whenever a website updates its design, this script uses **Playwright** to open a real browser window and **Gemini Vision** to "look" at a screenshot of the page. It's resilient, easy to adapt to any website, and incredibly cheap to run. I initially started out parsing the page and it got messy and complicated quickly. I tried this method and it was cut and dry and simple to implement. Using the vision method alos means now I can share it and you can adapt it to other retailers.
 
-## Features
-- Launches a persistent Chrome profile (preserves cookies, sessions, and helps avoid bot detection).
-- Takes visual screenshots of target web pages.
-- Uses Google's Gemini 2.5 Flash model to extract precise information (Price, Shipping status, Pickup availability).
-- Automatically calculates API costs per run.
-- Sends a formatted email report with the extracted data.
+## Things to keep in mind
+
+- It's Windows only at the moment but could be adapted to Mac pretty easily. Just give the `Readme.md`, `visual-product-agent.py` and `env.example` files to an AI model and tell it you need to make it work on a Mac instead of Windows.
+- You can also adapt it pretty easily to any other product or web site. Mostly the same drill as above, give it the specific product URLs and tell it it needs to update the URLs as well as the bit of code that is contained in `contents=[].`
+- HOWEVER, this only works if each product you want status on has a unique URL. 
+
+
+
+⚠️The above was human written, the below was written by Gemini, but then I fact checked it and made a few minor corrects and readability edits.
 
 ## Prerequisites
 - Python 3.8+
