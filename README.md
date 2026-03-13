@@ -31,7 +31,7 @@ Instead of relying on fragile HTML parsing that breaks whenever a website update
 <a id="setup-start"></a>
 ------
 
-##### ⚠️The above was human written. The below was written by Gemini then fact checked by a human and given a few minor readability edits. 
+##### ⚠️The above was human written. The below was written by Gemini, fact checked by a human and given a few minor readability edits. 
 
 ## Prerequisites
 - Python 3.8+
