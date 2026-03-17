@@ -4,7 +4,7 @@ import time
 import logging
 from email.message import EmailMessage
 from playwright.sync_api import sync_playwright
-from google import genai  # The modern 2026 library
+from google import genai 
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -29,13 +29,13 @@ RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL")
 USER_DATA_DIR = os.getenv("CHROME_USER_DATA_DIR")
 PROFILE_NAME = os.getenv("CHROME_PROFILE_NAME")
 
+# This is where you put the URLs of the products you want to check on
 URLS = {
     "https://oldnavy.gap.com/browse/product.do?pid=5844620023434&vid=1#pdp-page-content": "Structured Straight Non-Stretch Jeans, Dark Wash, 34x34",
     "https://oldnavy.gap.com/browse/product.do?pid=5844470023434&vid=1#pdp-page-content": "Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34"
 }
-# ================================================================
 
-# Initialize the 2026 GenAI Client
+# Initialize the GenAI Client
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 def get_price_via_vision(page, url):
@@ -55,7 +55,7 @@ def get_price_via_vision(page, url):
     with open(screenshot_path, "rb") as f:
         image_bytes = f.read()
 
-    # The 2026-stable call structure
+# Change the contents area to match whatever product you are checking on
     max_retries = 3
     for attempt in range(max_retries):
         try:
@@ -103,7 +103,6 @@ def send_email(report_body):
         logging.error(f"Failed to send email: {e}")
 
 def main():
-    # Insert a clear breaker line in the log file for visual separation of runs
     current_time_str = time.strftime('%m/%d/%y, %I:%M %p').lstrip("0").replace(" 0", " ")
     logging.info(f"\n\n{'='*20} Start task on {current_time_str} {'='*20}")
 
@@ -136,7 +135,7 @@ def main():
             
         context.close()
 
-    # Calculate Cost for Gemini 2.5 Flash
+    # Calculate Cost for Gemini 2.5 Flash, valid as of March 2026
     # Input: $0.30 per 1M tokens
     # Output: $2.50 per 1M tokens
     input_cost = (total_in_tokens / 1_000_000) * 0.30
