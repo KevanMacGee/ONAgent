@@ -26,8 +26,7 @@ SENDER_EMAIL = os.getenv("SENDER_EMAIL")
 EMAIL_APP_PASSWORD = os.getenv("EMAIL_APP_PASSWORD")
 RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL")
 
-USER_DATA_DIR = os.getenv("CHROME_USER_DATA_DIR")
-PROFILE_NAME = os.getenv("CHROME_PROFILE_NAME")
+USER_DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "playwright_profile")
 
 # This is where you put the URLs of the products you want to check on
 URLS = {
@@ -111,11 +110,10 @@ def main():
     total_out_tokens = 0
     
     with sync_playwright() as p:
-        logging.info(f"Launching Chrome profile: {PROFILE_NAME}...")
+        logging.info(f"Launching isolated Playwright profile at: {USER_DATA_DIR}")
         context = p.chromium.launch_persistent_context(
             USER_DATA_DIR,
             headless=False,  # Debug by setting to False
-            args=[f"--profile-directory={PROFILE_NAME}"]
         )
         page = context.new_page()
 
