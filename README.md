@@ -88,7 +88,7 @@ Adjust the text instruction to ask Gemini for whatever information is relevant t
 ## Running the Script
 Execute the script manually to test it:
 ```bash
-python @visual-product-agent.py
+python visual-product-agent.py
 ```
 
 ### Background Execution & Scheduling
