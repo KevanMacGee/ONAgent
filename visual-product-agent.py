@@ -59,9 +59,9 @@ def get_price_via_vision(page, url):
     for attempt in range(max_retries):
         try:
             response = client.models.generate_content(
-                model="gemini-2.5-flash",
+                model="gemini-2.5-pro",
                 contents=[
-                    "Look at this Old Navy product page. What is the current price? Is it available for shipping? Is it available for in-store pickup? Return only: Price: [value], Shipping: [Available/Unavailable], Pickup: [Available/Unavailable]",
+                    "Analyze this Old Navy product page screenshot. Extract the price and availability strictly based on the visible text. Do not guess. If information is cut off or not explicitly visible, you must say 'Not Visible'. Return exactly in this format:\nPrice: [value or 'Not Visible']\nShipping: [Available / Unavailable / Not Visible]\nPickup: [Available / Unavailable / Not Visible]",
                     {"inline_data": {"data": image_bytes, "mime_type": "image/png"}}
                 ]
             )
@@ -137,8 +137,8 @@ def main():
     # Calculate Cost for Gemini 2.5 Flash, valid as of March 2026
     # Input: $0.30 per 1M tokens
     # Output: $2.50 per 1M tokens
-    input_cost = (total_in_tokens / 1_000_000) * 0.30
-    output_cost = (total_out_tokens / 1_000_000) * 2.50
+    input_cost = (total_in_tokens / 1_000_000) * 1.00
+    output_cost = (total_out_tokens / 1_000_000) * 10.00
     total_cost = input_cost + output_cost
 
     analytics_block = f"""
