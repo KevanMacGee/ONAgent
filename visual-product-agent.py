@@ -113,7 +113,8 @@ def main():
         logging.info(f"Launching isolated Playwright profile at: {USER_DATA_DIR}")
         context = p.chromium.launch_persistent_context(
             USER_DATA_DIR,
-            headless=False,  # Debug by setting to False
+            headless=False,
+            viewport={"width": 1280, "height": 920}
         )
         page = context.new_page()
 
