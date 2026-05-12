@@ -10,7 +10,7 @@ Old Navy jeans are normally about $40 - $50 a pair but they go on sale a few tim
 - It then sends the screenshot to the Gemini API. 
 - Gemini 2.5 Flash multimodal AI looks at the image to find current price and whether they are in stock for both shipping and in store pick up options. 
 - It then emails me that info.
-- I added the API info at the bottom, so it tells me the number of tokens used and how much that specific request cost. It's early 2026 at the time of this writing and it has cost about $0.0003 each time it runs. Your mileage will probably vary, but not by much.
+- I added the API info at the bottom, so it tells me the number of tokens used and how much that specific request cost. It's early 2026 at the time of this writing and it has cost about $0.001 each time it runs. Your mileage will probably vary, but not by much.
 - Results are also saved to `agent.log`. Be warned, I like my log files a bit on the verbose side.
 
 

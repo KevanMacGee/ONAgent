@@ -30,8 +30,8 @@ USER_DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "playwr
 
 # This is where you put the URLs of the products you want to check on
 URLS = {
-    "https://oldnavy.gap.com/browse/product.do?pid=5844620023434&vid=1#pdp-page-content": "Structured Straight Non-Stretch Jeans, Dark Wash, 34x34",
-    "https://oldnavy.gap.com/browse/product.do?pid=5844470023434&vid=1#pdp-page-content": "Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34"
+    "https://oldnavy.gap.com/browse/product.do?pid=5844620023432&vid=1#pdp-page-content": "Structured Straight Non-Stretch Jeans, Dark Wash, 34x34",
+    "https://oldnavy.gap.com/browse/product.do?pid=5844470023432&vid=1#pdp-page-content": "Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34"
 }
 
 # Initialize the GenAI Client
@@ -134,7 +134,7 @@ def main():
             
         context.close()
 
-    # Calculate Cost for Gemini 2.5 Flash, valid as of March 2026
+    # Calculate Cost for Gemini 2.5 Flash, valid as of May 2026
     # Input: $0.30 per 1M tokens
     # Output: $2.50 per 1M tokens
     input_cost = (total_in_tokens / 1_000_000) * 1.00
