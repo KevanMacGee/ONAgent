@@ -44,7 +44,7 @@ Instead of relying on fragile HTML parsing that breaks whenever a website update
 ### 1. Install Dependencies
 Install the required Python packages:
 ```bash
-pip install playwright openai python-dotenv
+python -m pip install -r requirements.txt
 playwright install chromium
 ```
 

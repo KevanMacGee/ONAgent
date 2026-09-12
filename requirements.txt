@@ -1,0 +1,4 @@
+# Direct runtime dependencies for visual-product-agent.py
+openai==3.13.0
+playwright==1.58.0
+python-dotenv==1.1.0
