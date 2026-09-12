@@ -667,3 +667,46 @@ Total Output Tokens: 287
 Estimated Cost:      $0.00582
 
 2026-09-12 14:42:26,430 - INFO - Email sent successfully.
+2026-09-12 17:14:08,182 - INFO - 
+
+==================== Start task on 9/12/26, 5:14 PM ====================
+2026-09-12 17:14:16,360 - INFO - Launching isolated Playwright profile at: C:\Users\User\Development\ONAgent\playwright_profile
+2026-09-12 17:14:17,594 - INFO - Navigating to https://oldnavy.gap.com/browse/product.do?pid=5844620023432&vid=1#pdp-page-content...
+2026-09-12 17:14:18,177 - INFO - Waiting 7 seconds for visual settle...
+2026-09-12 17:14:25,785 - INFO - Analyzing with OpenAI gpt-5.6-luna (high reasoning)...
+2026-09-12 17:14:31,796 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-12 17:14:31,966 - INFO - Result for Structured Straight Non-Stretch Jeans, Dark Wash, 34x34: Price: $16.00
+Shipping: Available
+Pickup: Available
+2026-09-12 17:14:31,967 - INFO - Navigating to https://oldnavy.gap.com/browse/product.do?pid=5844470023432&vid=1#pdp-page-content...
+2026-09-12 17:14:32,517 - INFO - Waiting 7 seconds for visual settle...
+2026-09-12 17:14:40,052 - INFO - Analyzing with OpenAI gpt-5.6-luna (high reasoning)...
+2026-09-12 17:14:42,693 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-12 17:14:42,735 - INFO - Result for Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34: Price: $16.00
+Shipping: Available
+Pickup: Available
+2026-09-12 17:14:43,306 - INFO - 
+Final Report:
+Old Navy Price Check Report
+==============================
+
+Item: Structured Straight Non-Stretch Jeans, Dark Wash, 34x34
+URL: https://oldnavy.gap.com/browse/product.do?pid=5844620023432&vid=1#pdp-page-content
+Price: $16.00
+Shipping: Available
+Pickup: Available
+------------------------------
+Item: Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34
+URL: https://oldnavy.gap.com/browse/product.do?pid=5844470023432&vid=1#pdp-page-content
+Price: $16.00
+Shipping: Available
+Pickup: Available
+------------------------------
+
+Session Analytics:
+Total Input Tokens:  2,954
+Cached Input Tokens: 0
+Total Output Tokens: 249
+Estimated Luna Cost:  $0.00089
+
+2026-09-12 17:14:45,815 - INFO - Email sent successfully.
