@@ -1,10 +1,11 @@
+import base64
 import os
 import smtplib
 import time
 import logging
 from email.message import EmailMessage
 from playwright.sync_api import sync_playwright
-from google import genai 
+from openai import OpenAI
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -21,10 +22,13 @@ logging.basicConfig(
 )
 
 # ================= CONFIGURATION =================
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 SENDER_EMAIL = os.getenv("SENDER_EMAIL")
 EMAIL_APP_PASSWORD = os.getenv("EMAIL_APP_PASSWORD")
 RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL")
+
+if not OPENAI_API_KEY:
+    raise RuntimeError("OPENAI_API_KEY is missing. Add it to the local .env file.")
 
 USER_DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "playwright_profile")
 
@@ -34,8 +38,8 @@ URLS = {
     "https://oldnavy.gap.com/browse/product.do?pid=5844470023432&vid=1#pdp-page-content": "Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34"
 }
 
-# Initialize the GenAI Client
-client = genai.Client(api_key=GEMINI_API_KEY)
+# Initialize the OpenAI Client
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 def get_price_via_vision(page, url):
     logging.info(f"Navigating to {url}...")
@@ -50,28 +54,43 @@ def get_price_via_vision(page, url):
     
     screenshot_path = "temp_price_shot.png"
     page.screenshot(path=screenshot_path, full_page=False)
-    logging.info("Analyzing with Gemini 2.5 Flash...")
+    logging.info("Analyzing with OpenAI GPT-5.6 Luna (high reasoning)...")
     with open(screenshot_path, "rb") as f:
         image_bytes = f.read()
+    image_data_url = "data:image/png;base64," + base64.b64encode(image_bytes).decode("ascii")
 
 # Change the contents area to match whatever product you are checking on
     max_retries = 3
     for attempt in range(max_retries):
         try:
-            response = client.models.generate_content(
-                model="gemini-2.5-pro",
-                contents=[
-                    "Analyze this Old Navy product page screenshot. Extract the price and availability strictly based on the visible text. Do not guess. If information is cut off or not explicitly visible, you must say 'Not Visible'. Return exactly in this format:\nPrice: [value or 'Not Visible']\nShipping: [Available / Unavailable / Not Visible]\nPickup: [Available / Unavailable / Not Visible]",
-                    {"inline_data": {"data": image_bytes, "mime_type": "image/png"}}
+            response = client.responses.create(
+                model="gpt-5.6-luna",
+                reasoning={"effort": "high"},
+                input=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "input_text",
+                                "text": "Analyze this Old Navy product page screenshot. Extract the price and availability strictly based on the visible text. Do not guess. If information is cut off or not explicitly visible, you must say 'Not Visible'. Return exactly in this format:\nPrice: [value or 'Not Visible']\nShipping: [Available / Unavailable / Not Visible]\nPickup: [Available / Unavailable / Not Visible]"
+                            },
+                            {
+                                "type": "input_image",
+                                "image_url": image_data_url,
+                                "detail": "high"
+                            }
+                        ]
+                    }
                 ]
             )
             
             # Extract tokens
-            in_tokens = response.usage_metadata.prompt_token_count if response.usage_metadata else 0
-            out_tokens = response.usage_metadata.candidates_token_count if response.usage_metadata else 0
+            usage = response.usage
+            in_tokens = usage.input_tokens if usage else 0
+            out_tokens = usage.output_tokens if usage else 0
             
             return {
-                "text": response.text,
+                "text": response.output_text,
                 "in_tokens": in_tokens,
                 "out_tokens": out_tokens
             }
