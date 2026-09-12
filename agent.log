@@ -583,3 +583,87 @@ Total Output Tokens: 32
 Estimated Cost:      $0.00100
 
 2026-09-12 03:27:07,909 - INFO - Email sent successfully.
+2026-09-12 14:14:54,662 - INFO - 
+
+==================== Start task on 9/12/26, 2:14 PM ====================
+2026-09-12 14:15:04,243 - INFO - Launching isolated Playwright profile at: C:\Users\User\Development\ONAgent\playwright_profile
+2026-09-12 14:15:08,026 - INFO - Navigating to https://oldnavy.gap.com/browse/product.do?pid=5844620023432&vid=1#pdp-page-content...
+2026-09-12 14:15:08,855 - INFO - Waiting 7 seconds for visual settle...
+2026-09-12 14:15:18,863 - INFO - Analyzing with OpenAI GPT-5.6 Luna (high reasoning)...
+2026-09-12 14:15:26,713 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-12 14:15:26,898 - INFO - Result for Structured Straight Non-Stretch Jeans, Dark Wash, 34x34: Price: $16.00
+Shipping: Available
+Pickup: Available
+2026-09-12 14:15:26,899 - INFO - Navigating to https://oldnavy.gap.com/browse/product.do?pid=5844470023432&vid=1#pdp-page-content...
+2026-09-12 14:15:27,533 - INFO - Waiting 7 seconds for visual settle...
+2026-09-12 14:15:35,760 - INFO - Analyzing with OpenAI GPT-5.6 Luna (high reasoning)...
+2026-09-12 14:15:39,272 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-12 14:15:39,285 - INFO - Result for Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34: Price: $16.00
+Shipping: Available
+Pickup: Available
+2026-09-12 14:15:40,193 - INFO - 
+Final Report:
+Old Navy Price Check Report
+==============================
+
+Item: Structured Straight Non-Stretch Jeans, Dark Wash, 34x34
+URL: https://oldnavy.gap.com/browse/product.do?pid=5844620023432&vid=1#pdp-page-content
+Price: $16.00
+Shipping: Available
+Pickup: Available
+------------------------------
+Item: Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34
+URL: https://oldnavy.gap.com/browse/product.do?pid=5844470023432&vid=1#pdp-page-content
+Price: $16.00
+Shipping: Available
+Pickup: Available
+------------------------------
+
+Session Analytics:
+Total Input Tokens:  2,954
+Total Output Tokens: 270
+Estimated Cost:      $0.00565
+
+2026-09-12 14:15:42,251 - INFO - Email sent successfully.
+2026-09-12 14:41:52,496 - INFO - 
+
+==================== Start task on 9/12/26, 2:41 PM ====================
+2026-09-12 14:41:54,874 - INFO - Launching isolated Playwright profile at: C:\Users\User\Development\ONAgent\playwright_profile
+2026-09-12 14:41:56,077 - INFO - Navigating to https://oldnavy.gap.com/browse/product.do?pid=5844620023432&vid=1#pdp-page-content...
+2026-09-12 14:41:56,862 - INFO - Waiting 7 seconds for visual settle...
+2026-09-12 14:42:07,071 - INFO - Analyzing with OpenAI GPT-5.6 Luna (high reasoning)...
+2026-09-12 14:42:12,212 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-12 14:42:12,472 - INFO - Result for Structured Straight Non-Stretch Jeans, Dark Wash, 34x34: Price: $16.00
+Shipping: Available
+Pickup: Available
+2026-09-12 14:42:12,472 - INFO - Navigating to https://oldnavy.gap.com/browse/product.do?pid=5844470023432&vid=1#pdp-page-content...
+2026-09-12 14:42:13,105 - INFO - Waiting 7 seconds for visual settle...
+2026-09-12 14:42:20,648 - INFO - Analyzing with OpenAI GPT-5.6 Luna (high reasoning)...
+2026-09-12 14:42:23,957 - INFO - HTTP Request: POST https://api.openai.com/v1/responses "HTTP/1.1 200 OK"
+2026-09-12 14:42:24,016 - INFO - Result for Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34: Price: $16.00
+Shipping: Available
+Pickup: Available
+2026-09-12 14:42:24,586 - INFO - 
+Final Report:
+Old Navy Price Check Report
+==============================
+
+Item: Structured Straight Non-Stretch Jeans, Dark Wash, 34x34
+URL: https://oldnavy.gap.com/browse/product.do?pid=5844620023432&vid=1#pdp-page-content
+Price: $16.00
+Shipping: Available
+Pickup: Available
+------------------------------
+Item: Structured Straight Non-Stretch Jeans, Dark Rinse, 34x34
+URL: https://oldnavy.gap.com/browse/product.do?pid=5844470023432&vid=1#pdp-page-content
+Price: $16.00
+Shipping: Available
+Pickup: Available
+------------------------------
+
+Session Analytics:
+Total Input Tokens:  2,954
+Total Output Tokens: 287
+Estimated Cost:      $0.00582
+
+2026-09-12 14:42:26,430 - INFO - Email sent successfully.
