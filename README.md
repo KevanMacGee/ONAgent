@@ -11,12 +11,12 @@ Old Navy jeans are normally about $40 - $50 a pair but they go on sale a few tim
 - GPT-5.6 Luna, using high reasoning, looks at the image to find the current price and whether the item is available for shipping and in-store pickup.
 - It then emails me that info.
 - Each report includes input, cached-input, and output token counts plus an estimated Luna API cost.
-- Results are also saved to `agent.log`. Be warned, I like my log files a bit on the verbose side.
+- Results are also saved to `agent.log`. 
 
 
 
 ## Why this approach?
-Instead of relying on fragile HTML parsing that breaks whenever a website updates its design, this script uses **Playwright** to open a real browser window and an **OpenAI multimodal model** to "look" at a screenshot of the page. It's resilient, easy to adapt to any website, and cost-sensitive to run. I initially started out parsing the page and it got messy and complicated very quickly. I tried this method and it was cut and dry and simple to implement. Using the vision method also means now I can share it and you can potentially adapt it to other retailers.
+Instead of relying on fragile HTML parsing that breaks whenever a website updates its design, this script uses **Playwright** to open a real browser window and an **OpenAI multimodal model** to "look" at a screenshot of the page. It's resilient, easy to adapt to any website, and ridiculously cheap to run. I initially started out parsing the page and it got messy and complicated very quickly. I tried this method and it was cut and dry and simple to implement. Using the vision method also means now I can share it and you can potentially adapt it to other retailers.
 
 ## Things to keep in mind
 
@@ -28,10 +28,9 @@ Instead of relying on fragile HTML parsing that breaks whenever a website update
 - As the code exists now, you can watch the agent open a Chrome window and navigate to the page(s) you are interested in, then it closes it. I liked it for testing and just to watch it run. You can change that so it runs in the background (headless) by changing `headless=False` to `headless=True`.
 
 
-<a id="setup-start"></a>
 ------
 
-##### The setup notes below are AI-assisted, fact checked by a human, and kept intentionally brief.
+##### ⚠️The setup notes below are AI-assisted, fact checked by a human, and kept intentionally brief.
 
 ## Prerequisites
 - Python 3.8+
